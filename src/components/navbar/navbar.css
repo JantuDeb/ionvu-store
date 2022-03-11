@@ -1,0 +1,14 @@
+.navbar{
+    height: 4rem;
+}
+
+.nav-menu{
+    position: absolute;
+    z-index: 10;
+    width: 16rem;
+    height: 100vh;
+}
+
+.nav-list-item{
+    border-bottom:  1px solid var(--fu-gray-300);
+}
