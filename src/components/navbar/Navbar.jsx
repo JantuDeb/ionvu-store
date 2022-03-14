@@ -12,13 +12,20 @@ const Navbar = () => {
     <header className="App-header">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
       <nav className="flex justify-between items-center px-4 navbar">
-        <IconWrapper>
-          <GiHamburgerMenu
-            size={30}
-            cursor="pointer"
-            onClick={() => setShowNavMenu((show) => !show)}
-          />
-        </IconWrapper>
+        <div className="profile-desktop">
+        <button className="btn-outline-danger radius-md px-2 py-1">
+        Login
+        </button>
+        </div>
+        <div className="nav-menu-icon">
+          <IconWrapper>
+            <GiHamburgerMenu
+              size={30}
+              cursor="pointer"
+              onClick={() => setShowNavMenu((show) => !show)}
+            />
+          </IconWrapper>
+        </div>
         <div className="flex">
           <div className="mx-2">
             <IconWrapper>

@@ -12,3 +12,24 @@
 .nav-list-item{
     border-bottom:  1px solid var(--fu-gray-300);
 }
+
+.profile-desktop{
+    display: none;
+}
+
+.search-input-desktop{
+    display: none;
+}
+
+@media (min-width:600px) {
+    .nav-menu{
+        display: none;
+    }
+    .nav-menu-icon{
+        display: none;
+    }
+
+    .profile-desktop{
+        display: block;
+    }
+}
