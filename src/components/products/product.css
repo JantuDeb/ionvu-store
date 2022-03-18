@@ -1,0 +1,39 @@
+.breadcrumbs {
+  padding: 0rem 0.5rem;
+}
+
+.sidebar-filter {
+  flex-shrink: 0;
+  width: 12.5rem;
+}
+
+.products {
+  gap: 2rem;
+}
+
+.card {
+  box-shadow: none;
+  border: 1px solid var(--fu-gray-400);
+}
+
+.card:hover {
+  box-shadow: var(--fu-shadow-gray);
+}
+
+.product-listing {
+  width: 100%;
+}
+
+.product-image-container {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+}
+
+.product-image-container img {
+  height: 100%;
+}
+
+.product-info {
+  height: 100px;
+}
