@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const defaultConfig = {
-  baseURL: process.env.REACT_APP_API_BASE_URL,
+  // eslint-disable-next-line no-undef
+  baseURL: location.protocol ==="http:"? process.env.REACT_APP_API_BASE_URL :"https://ionvu-api.herokuapp.com/api/v1/",
   headers: {
     "Content-Type": "application/json",
   },
