@@ -2,7 +2,6 @@ import React, {
   createContext,
   useContext,
   useState,
-  useEffect,
   useReducer,
 } from "react";
 import axiosInstance from "../../utils/axios-instance";
@@ -22,16 +21,14 @@ const ProductProvider = ({ children }) => {
     initialState
   );
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axiosInstance.get("/products");
-        setProducts(data.products);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
+  const loadProducts = async () => {
+    try {
+      const { data } = await axiosInstance.get("/products");
+      setProducts(data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const filterProducts = composeFilterFunc(
     productState,
@@ -44,7 +41,7 @@ const ProductProvider = ({ children }) => {
   console.log(productState);
   return (
     <ProductContext.Provider
-      value={{ products: filterProducts, productState, productDispatch }}
+      value={{ products: filterProducts, productState, productDispatch , loadProducts}}
     >
       {children}
     </ProductContext.Provider>
