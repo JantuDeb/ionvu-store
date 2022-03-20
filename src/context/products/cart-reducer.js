@@ -8,7 +8,7 @@ export const cartReducer = (state, action) => {
     case ADD_TO_CART:
       if (state.some(({ product }) => product._id === payload._id))
         return state.map((cart) =>
-          cart.product._id == payload._id
+          cart.product._id=== payload._id
             ? { ...cart, quantity: cart.quantity + 1 }
             : cart
         );
