@@ -1,0 +1,38 @@
+
+.cart {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.input-qty {
+  width: 2.5rem;
+  vertical-align: middle;
+  text-align: center;
+  border: 2px solid var(--fu-gray-200);
+}
+
+.input-qty:focus {
+  outline: 1px solid transparent;
+  border: 1px solid var(--fu-gray-400);
+}
+
+.price-details {
+  height: fit-content;
+  width: 100%;
+  max-width: 20rem;
+}
+
+
+.item-photo{
+  height: 901%;
+  object-fit: contain;
+}
+
+@media only screen and (min-width: 600px) {
+  .cart{
+    align-items: center;
+  }
+  .cart-container {
+    flex-direction: row;
+  }
+}
