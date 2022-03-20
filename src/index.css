@@ -53,6 +53,14 @@ select {
   align-items: flex-start;
 }
 
-.w-full{
+.w-full {
   width: 100%;
+}
+
+.p-sm {
+  padding: 0.2rem 0.5rem;
+}
+
+.grow {
+  flex-grow: 1;
 }
