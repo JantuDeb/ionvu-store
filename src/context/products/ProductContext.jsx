@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useReducer,
-} from "react";
+import React, { createContext, useContext, useState, useReducer } from "react";
 import axiosInstance from "../../utils/axios-instance";
 import {
   composeFilterFunc,
@@ -13,6 +7,7 @@ import {
   filterRating,
   sortProduct,
 } from "../../utils/filters";
+import { cartReducer } from "./cart-reducer";
 import { initialState, productReducer } from "./product-reducer";
 const ProductContext = createContext([]);
 const ProductProvider = ({ children }) => {
@@ -21,17 +16,15 @@ const ProductProvider = ({ children }) => {
     productReducer,
     initialState
   );
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axiosInstance.get("/products");
-        setProducts(data.products);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
+  const [cartState, cartDispatch] = useReducer(cartReducer, []);
+  const loadProducts = async () => {
+    try {
+      const { data } = await axiosInstance.get("/products");
+      setProducts(data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const filterProducts = composeFilterFunc(
     productState,
@@ -43,7 +36,14 @@ const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ products: filterProducts, productState, productDispatch }}
+      value={{
+        products: filterProducts,
+        productState,
+        productDispatch,
+        loadProducts,
+        cartDispatch,
+        cartState,
+      }}
     >
       {children}
     </ProductContext.Provider>

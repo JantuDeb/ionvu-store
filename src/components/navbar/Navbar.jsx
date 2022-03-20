@@ -6,8 +6,10 @@ import { BsBag } from "react-icons/bs";
 import IconWrapper from "../shared/IconWrapper";
 import { Link } from "react-router-dom";
 import NavMenu from "./NavMenu";
+import { useProducts } from "../../context/products/ProductContext";
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
+  const { cartState } = useProducts();
   return (
     <header className="App-header bg-white">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
@@ -35,7 +37,9 @@ const Navbar = () => {
             <IconWrapper>
               <BsBag size={20} />
             </IconWrapper>
-            <div className="badge-icon-count bg-red">5</div>
+            {cartState?.length !== 0 && (
+              <div className="badge-icon-count bg-red">{cartState.length}</div>
+            )}
           </Link>
         </div>
       </nav>

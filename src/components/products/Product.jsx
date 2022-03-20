@@ -3,7 +3,10 @@ import IconWrapper from "../shared/IconWrapper";
 import { FiHeart } from "react-icons/fi";
 import { AiFillStar } from "react-icons/ai";
 import { getDiscountedPrice } from "../../utils/utils";
+import { useProducts } from "../../context/products/ProductContext";
+import { ADD_TO_CART } from "../../context/products/cart-reducer";
 const Product = ({ product }) => {
+  const { cartDispatch } = useProducts();
   return (
     <div className="card flex-col radius-md bg-white ">
       <div className="flex justify-between items-start">
@@ -35,7 +38,12 @@ const Product = ({ product }) => {
               {product.discount * 100}% off
             </p>
           </div>
-          <button className="m-4 radius-md bg-red text-white btn-add-cart">
+          <button
+            className="m-4 radius-md bg-red text-white btn-add-cart"
+            onClick={() =>
+              cartDispatch({ type: ADD_TO_CART, payload: product })
+            }
+          >
             Add to Cart
           </button>
         </div>
