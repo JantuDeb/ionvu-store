@@ -41,7 +41,6 @@ const ProductProvider = ({ children }) => {
     filterPrice
   )(products);
 
-  console.log(productState);
   return (
     <ProductContext.Provider
       value={{ products: filterProducts, productState, productDispatch }}

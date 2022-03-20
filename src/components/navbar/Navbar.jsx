@@ -3,13 +3,13 @@ import "./navbar.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FiSearch, FiHeart } from "react-icons/fi";
 import { BsBag } from "react-icons/bs";
-import IconWrapper from "../IconWrapper";
+import IconWrapper from "../shared/IconWrapper";
 import { Link } from "react-router-dom";
 import NavMenu from "./NavMenu";
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
   return (
-    <header className="App-header">
+    <header className="App-header bg-white">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
       <nav className="flex justify-between items-center px-4 navbar">
         <IconWrapper>
