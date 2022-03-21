@@ -35,7 +35,7 @@ body {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
-
+}
 .icon:hover {
   background: rgba(0, 0, 0, 0.1);
 }
