@@ -28,9 +28,9 @@ const Product = ({ product }) => {
   return (
     <div className="card flex-col radius-md bg-white ">
       <div className="flex justify-between items-start">
-        <div className="text-white bg-red px-2 flex center radius-top-left">
-          Trending
-        </div>
+        {product?.tag && <div className="text-white bg-red px-2 flex center radius-top-left">
+          {product.tag}
+        </div>}
         <button className="p-0 radius-full icon-wish" onClick={wishListHandler}>
           <IconWrapper>
             {isWishListed ? (
