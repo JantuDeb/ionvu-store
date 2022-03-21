@@ -1,5 +1,23 @@
 import React from "react";
+import { useProducts } from "../../context/products/ProductContext";
 const PriceDetails = () => {
+  const { cartState } = useProducts();
+
+  function getPriceDetails(cartList) {
+    return cartList.reduce(
+      (acc, cur) => ({
+        ...acc,
+        totalPrice: acc.totalPrice + cur.product.price * cur.quantity,
+        totalDiscount:
+          acc.totalDiscount +
+          Math.ceil(cur.product.price * cur.quantity * cur.product.discount),
+      }),
+
+      { totalPrice: 0, totalDiscount: 0 }
+    );
+  }
+  const { totalDiscount, totalPrice } = getPriceDetails(cartState);
+
   return (
     <div className="price-details flex-col shadow-gray mx-2 bg-white">
       <div className=" flex items-center p-2">
@@ -7,12 +25,12 @@ const PriceDetails = () => {
       </div>
       <div className="bg-white p-2">
         <div className="flex justify-between py-2 ">
-          <span>Price (2 items) </span>
-          <span>₹3,52,939</span>
+          <span>Price ({cartState?.length} items) </span>
+          <span>₹{totalPrice}</span>
         </div>
         <div className="flex justify-between py-2">
           <span>Discount </span>
-          <span className="text-success">− ₹46,000</span>
+          <span className="text-success">− ₹{totalDiscount}</span>
         </div>
         <div className="flex justify-between py-2 border-bottom-dotted">
           <span>Delivery Charges</span>
@@ -21,10 +39,10 @@ const PriceDetails = () => {
 
         <div className="flex justify-between py-2 border-bottom-dotted">
           <span>Total Amount</span>
-          <span>₹3,06,939 </span>
+          <span>₹{totalPrice - totalDiscount} </span>
         </div>
         <div className="flex justify-between py-2 text-success">
-          You will save ₹46,000 on this order
+          You will save ₹{totalDiscount} on this order
         </div>
         <button className="bg-red radius-md text-white"> Place Order </button>
       </div>

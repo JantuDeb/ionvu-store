@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Product from "../components/products/Product";
 import ProductFilter from "../components/products/ProductFilter";
 import TopBar from "../components/products/TopBar";
 import { useProducts } from "../context/products/ProductContext";
 const Products = () => {
-  const { products } = useProducts();
+  const { products, loadProducts } = useProducts();
+
+  useEffect(() => loadProducts(), []);
 
   return (
     <main className="my-2 flex container">
