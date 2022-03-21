@@ -5,11 +5,11 @@ import Categories from "../components/home/category/Categories";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Categories />
       {/* <Banner /> */}
       {/* <Trending /> */}
-    </div>
+    </>
   );
 };
 
