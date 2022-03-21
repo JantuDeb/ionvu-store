@@ -1,7 +1,7 @@
 import React from "react";
 import { BsPersonCircle } from "react-icons/bs";
 import { MdOutlineClose } from "react-icons/md";
-import IconWrapper from "../IconWrapper";
+import IconWrapper from "../shared/IconWrapper";
 const NavMenu = ({ setShowNavMenu }) => {
   return (
     <div className="nav-menu shadow-gray bg-white flex-col p-4">

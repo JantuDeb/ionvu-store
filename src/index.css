@@ -35,4 +35,57 @@ body {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+
+.icon:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.container-main {
+  width: 100%;
+  max-width: 80%;
+}
+
+.radius-top-left {
+  border-top-left-radius: 0.5rem;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--fu-red);
+}
+
+#price-range {
+  height: 0.3rem;
+}
+
+.bg-body-color {
+  background-color: #f0f2f5;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
+select:focus {
+  outline: 2px solid transparent;
+}
+
+select {
+  border: 1px solid palevioletred;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.p-sm {
+  padding: 0.2rem 0.5rem;
+}
+
+.grow {
+  flex-grow: 1;
 }

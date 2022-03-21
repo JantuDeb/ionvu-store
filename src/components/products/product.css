@@ -1,0 +1,46 @@
+
+.sidebar-filter {
+  flex-shrink: 0;
+  width: 14rem;
+}
+
+.products {
+  gap: 1rem;
+  margin: 0.3rem 0;
+}
+
+.card {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.card:hover {
+  box-shadow: var(--fu-shadow-gray);
+}
+
+.product-listing {
+  width: 100%;
+}
+
+.product-image-container {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+}
+
+.product-image-container img {
+  height: 150px;
+  object-fit: cover;
+}
+
+.product-info {
+  height: 180px;
+}
+
+.btn-add-cart {
+  width: 80%;
+}
+
+.icon-wish{
+  background-color: transparent;
+}
