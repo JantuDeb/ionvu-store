@@ -8,7 +8,6 @@ export const composeFilterFunc =
     }, products);
 
 export const sortProduct = (state, products) => {
-  console.log(state.sortBy.name);
   switch (state.sortBy.name) {
     case "price":
       if (state.sortBy.order === "low-to-high")

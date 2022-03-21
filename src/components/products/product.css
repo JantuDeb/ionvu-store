@@ -1,6 +1,3 @@
-.breadcrumbs {
-  padding: 0rem 0.5rem;
-}
 
 .sidebar-filter {
   flex-shrink: 0;
@@ -42,4 +39,8 @@
 
 .btn-add-cart {
   width: 80%;
+}
+
+.icon-wish{
+  background-color: transparent;
 }

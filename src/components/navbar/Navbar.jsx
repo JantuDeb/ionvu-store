@@ -9,7 +9,7 @@ import NavMenu from "./NavMenu";
 import { useProducts } from "../../context/products/ProductContext";
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
-  const { cartState } = useProducts();
+  const { cartState , wishlistState} = useProducts();
   return (
     <header className="App-header bg-white">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
@@ -31,7 +31,9 @@ const Navbar = () => {
             <IconWrapper>
               <FiHeart size={20} />
             </IconWrapper>
-            <div className="badge-icon-count bg-red">1</div>
+            {wishlistState?.length !== 0 && (
+              <div className="badge-icon-count bg-red">{wishlistState.length}</div>
+            )}
           </Link>
           <Link to="/cart" className="badge-icon mx-2">
             <IconWrapper>
