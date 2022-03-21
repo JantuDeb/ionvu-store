@@ -22,15 +22,10 @@ const Categories = () => {
 
   return (
     <section className="flex wrap categories py-4 justify-center">
-      {/* show loading */}
       {status.loading && <Loading />}
-
-      {/* show error */}
       {status.error !== "" && (
         <Error error={`Failed to load category: ${status.error}`} />
       )}
-
-      {/* show categories */}
       {categories.map((cat) => (
         <Link
           key={cat._id}
