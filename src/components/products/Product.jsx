@@ -31,7 +31,7 @@ const Product = ({ product }) => {
         <div className="text-white bg-red px-2 flex center radius-top-left">
           Trending
         </div>
-        <button className="p-0 radius-full m-1" onClick={wishListHandler}>
+        <button className="p-0 radius-full icon-wish" onClick={wishListHandler}>
           <IconWrapper>
             {isWishListed ? (
               <AiFillHeart size={20} color="red" />
