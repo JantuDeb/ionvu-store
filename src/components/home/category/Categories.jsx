@@ -1,24 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Category.css";
-import axiosInstance from "../../../utils/axios-instance";
 import Loading from "../../shared/Loading";
 import Error from "../../shared/Error";
-const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  const [status, setStatus] = useState({ loading: true, error: "" });
+import { useCategory } from "../../../context/category/CategoryContext";
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axiosInstance.get("/categories");
-        setCategories(data.categories);
-        setStatus({ loading: false, error: "" });
-      } catch (error) {
-        setStatus({ loading: false, error: error.message });
-      }
-    })();
-  }, []);
+const Categories = () => {
+  const { categories, status, loadCategory } = useCategory();
+  useEffect(() => loadCategory(), []);
 
   return (
     <section className="flex wrap categories py-4 justify-center">
