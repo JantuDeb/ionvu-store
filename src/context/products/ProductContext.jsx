@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useReducer } from "react";
-import axiosInstance from "../../utils/axios-instance";
+import {axiosInstance} from "../../utils/axios-instance";
 import {
   composeFilterFunc,
   filterCategory,
