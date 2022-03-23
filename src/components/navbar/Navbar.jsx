@@ -3,13 +3,15 @@ import "./navbar.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FiSearch, FiHeart } from "react-icons/fi";
 import { BsBag } from "react-icons/bs";
-import IconWrapper from "../IconWrapper";
+import IconWrapper from "../shared/IconWrapper";
 import { Link } from "react-router-dom";
 import NavMenu from "./NavMenu";
+import { useProducts } from "../../context/products/ProductContext";
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
+  const { cartState , wishlistState} = useProducts();
   return (
-    <header className="App-header">
+    <header className="App-header bg-white">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
       <nav className="flex justify-between items-center px-4 navbar">
         <IconWrapper>
@@ -29,13 +31,17 @@ const Navbar = () => {
             <IconWrapper>
               <FiHeart size={20} />
             </IconWrapper>
-            <div className="badge-icon-count bg-red">1</div>
+            {wishlistState?.length !== 0 && (
+              <div className="badge-icon-count bg-red">{wishlistState.length}</div>
+            )}
           </Link>
           <Link to="/cart" className="badge-icon mx-2">
             <IconWrapper>
               <BsBag size={20} />
             </IconWrapper>
-            <div className="badge-icon-count bg-red">5</div>
+            {cartState?.length !== 0 && (
+              <div className="badge-icon-count bg-red">{cartState.length}</div>
+            )}
           </Link>
         </div>
       </nav>
