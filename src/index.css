@@ -65,7 +65,9 @@ input[type="radio"] {
 .mr-2 {
   margin-right: 0.5rem;
 }
-
+.mt-2{
+  margin-top: 0.5rem;
+}
 select:focus {
   outline: 2px solid transparent;
 }

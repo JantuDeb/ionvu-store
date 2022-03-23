@@ -11,7 +11,7 @@ const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
   const { cartState , wishlistState} = useProducts();
   return (
-    <header className="App-header bg-white">
+    <header className="header bg-white shadow-gray">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
       <nav className="flex justify-between items-center px-4 navbar">
         <IconWrapper>
