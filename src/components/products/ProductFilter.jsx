@@ -18,7 +18,7 @@ const ProductFilter = () => {
   const { productState, productDispatch } = useProducts();
 
   return (
-    <aside className="flex-col mx-2 sidebar-filter bg-white p-2 shadow-gray">
+    <aside className="flex-col mx-2 bg-white p-2 shadow-gray w-full">
       <div>
         <p className="text-gray h5">Categories</p>
         <ul className="list-unstyled">

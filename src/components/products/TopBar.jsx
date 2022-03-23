@@ -4,6 +4,7 @@ import {
   SORT_PRODUCT,
 } from "../../context/products/product-reducer";
 import { useProducts } from "../../context/products/ProductContext";
+import { FaSort } from "react-icons/fa";
 import "./product.css";
 const TopBar = () => {
   const { productDispatch } = useProducts();
@@ -28,11 +29,11 @@ const TopBar = () => {
         className="p-0 px-2 radius-sm btn-grad-red"
         onClick={() => productDispatch({ type: CLEAR_FILTER })}
       >
-        RESET FILTER
+        CLEAR
       </button>
-      <span>
-        <label htmlFor="sort">
-          SORT BY <i className="fas fa-sort"></i>
+      <div className="flex">
+        <label htmlFor="sort" className="flex items-center">
+          <FaSort  size={20}/>
         </label>
         <select
           name="sort"
@@ -45,7 +46,7 @@ const TopBar = () => {
           <option value="high-to-low">Price: High to Low</option>
           <option value="newest-first">New</option>
         </select>
-      </span>
+      </div>
     </div>
   );
 };
