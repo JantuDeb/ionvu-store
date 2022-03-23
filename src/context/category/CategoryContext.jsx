@@ -3,7 +3,7 @@ import { axiosInstance } from "../../utils/axios-instance";
 
 const CategoryContext = createContext([]);
 const CategoryProvider = ({ children }) => {
-  const [categories, setCategories] = useState();
+  const [categories, setCategories] = useState([]);
   const [status, setStatus] = useState({ loading: true, error: "" });
 
   const loadCategory = async () => {
