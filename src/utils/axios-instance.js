@@ -5,7 +5,7 @@ const defaultConfig = {
   baseURL:
     window.location.protocol === "http:"
     // eslint-disable-next-line no-undef
-      ? process.env.REACT_APP_API_BASE_URL
+      ? "http://localhost:4000/api/v1/"
       : "https://ionvu-api.herokuapp.com/api/v1/",
   headers: {
     "Content-Type": "application/json",
