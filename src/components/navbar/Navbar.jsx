@@ -12,7 +12,7 @@ const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
   const { cartState, wishlistState } = useProducts();
 
-  const {  authState , logOut} = useAuth();
+  const { authState, logOut } = useAuth();
   return (
     <header className="header bg-white shadow-gray">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
@@ -25,11 +25,26 @@ const Navbar = () => {
           />
         </IconWrapper>
         <div className="flex">
-          <div className="profile">
-            {
-              authState.isLogedIn ? <button className="btn-grad-red radius-md py-1 px-2" onClick={()=>logOut()}>Logout</button> : <Link to="/login" className="btn-grad-red radius-md py-1 px-2 flex center">Login</Link>
-            }
-          </div>
+          {authState.isLogedIn ? (
+            <div className="dropdown flex justify-center">
+              <span className="font-bold">{authState.user.name}</span>
+              <ul className="dropdown-menu list-unstyled">
+                <li className="list-item">Profile</li>
+                <li className="list-item">Orders</li>
+                <li className="list-item">Addresses</li>
+                <li className="list-item" onClick={() => logOut()}>
+                  Logout
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="btn-grad-red radius-md py-1 px-2 flex center"
+            >
+              Login
+            </Link>
+          )}
           <div className="mx-2">
             <IconWrapper>
               <FiSearch size={20} cursor="pointer" />
