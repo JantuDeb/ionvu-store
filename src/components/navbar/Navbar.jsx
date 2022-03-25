@@ -13,9 +13,9 @@ const Navbar = () => {
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
       <nav className="flex justify-between items-center px-4 navbar">
         <div className="profile-desktop">
-        <button className="btn-outline-danger radius-md px-2 py-1">
-        Login
-        </button>
+        <Link to="/" className="text-red font-bold radius-md px-2 py-1">
+        IONVU
+        </Link>
         </div>
         <div className="nav-menu-icon">
           <IconWrapper>
