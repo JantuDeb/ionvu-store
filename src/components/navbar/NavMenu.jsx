@@ -1,8 +1,7 @@
 import React from "react";
-import { BsPersonCircle } from "react-icons/bs";
 import { MdOutlineClose } from "react-icons/md";
 import { Link } from "react-router-dom";
-import IconWrapper from "../IconWrapper";
+import IconWrapper from "../shared/IconWrapper";
 
 const NavMenu = ({ setShowNavMenu }) => {
   const categories = [

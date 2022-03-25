@@ -1,12 +1,11 @@
-.navbar{
-    height: 4rem;
+.navbar {
+  height: 4rem;
 }
 
-.nav-menu{
-    position: absolute;
-    z-index: 10;
-    width: 16rem;
-    height: 100vh;
+.nav-menu {
+  position: absolute;
+  width: 16rem;
+  height: 100vh;
 }
 
 .nav-list-item{
@@ -32,4 +31,34 @@
     .profile-desktop{
         display: block;
     }
+}
+.nav-list-item {
+  border-bottom: 1px solid var(--fu-gray-300);
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.dropdown{
+  position: relative;
+}
+
+.dropdown-menu{
+  display: none;
+  position: absolute;
+  top: 0.5rem;
+  min-width: 150px;
+}
+
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
+
+.dropdown-menu .list-item{
+  cursor: pointer;
 }
