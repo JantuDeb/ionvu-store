@@ -3,6 +3,7 @@ import React, {
   useContext,
   useState,
   useReducer,
+  useEffect
 } from "react";
 import axiosInstance from "../../utils/axios-instance";
 import {
@@ -30,6 +31,9 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => loadProducts(), []);
+
+
   const filterProducts = composeFilterFunc(
     productState,
     sortProduct,
@@ -38,7 +42,6 @@ const ProductProvider = ({ children }) => {
     filterPrice
   )(products);
 
-  console.log(productState);
   return (
     <ProductContext.Provider
       value={{ products: filterProducts, productState, productDispatch , loadProducts}}
