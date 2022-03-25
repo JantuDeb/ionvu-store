@@ -18,7 +18,7 @@ const ProductFilter = () => {
   const { productState, productDispatch } = useProducts();
 
   return (
-    <aside className="flex-col mx-2 sidebar-filter bg-white p-2 shadow-gray">
+    <aside className="flex-col mx-2 bg-white p-2 shadow-gray w-full">
       <div>
         <p className="text-gray h5">Categories</p>
         <ul className="list-unstyled">
@@ -28,6 +28,7 @@ const ProductFilter = () => {
                 <input
                   type="checkbox"
                   className="p-1"
+                  checked={productState.category[categoryName]}
                   onChange={() =>
                     productDispatch({
                       type: FILTER_CATEGORY,
@@ -75,7 +76,7 @@ const ProductFilter = () => {
       <div>
         <p className="text-gray h5">Ratings</p>
         <ul className="list-unstyled">
-          {[4,3,2,1].map((num) => (
+          {[4, 3, 2, 1].map((num) => (
             <li key={num}>
               <label>
                 <input

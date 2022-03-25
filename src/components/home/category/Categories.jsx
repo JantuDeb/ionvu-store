@@ -1,36 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Category.css";
-import axiosInstance from "../../../utils/axios-instance";
 import Loading from "../../shared/Loading";
 import Error from "../../shared/Error";
+import { useCategory } from "../../../context/category/CategoryContext";
+
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-  const [status, setStatus] = useState({ loading: true, error: "" });
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axiosInstance.get("/categories");
-        setCategories(data.categories);
-        setStatus({ loading: false, error: "" });
-      } catch (error) {
-        setStatus({ loading: false, error: error.message });
-      }
-    })();
-  }, []);
-
+  const { categories, status } = useCategory();
+ 
   return (
     <section className="flex wrap categories py-4 justify-center">
-      {/* show loading */}
       {status.loading && <Loading />}
-
-      {/* show error */}
       {status.error !== "" && (
         <Error error={`Failed to load category: ${status.error}`} />
       )}
-
-      {/* show categories */}
       {categories.map((cat) => (
         <Link
           key={cat._id}
