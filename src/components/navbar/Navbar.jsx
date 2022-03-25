@@ -17,13 +17,20 @@ const Navbar = () => {
     <header className="header bg-white shadow-gray">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
       <nav className="flex justify-between items-center px-4 navbar">
-        <IconWrapper>
-          <GiHamburgerMenu
-            size={30}
-            cursor="pointer"
-            onClick={() => setShowNavMenu((show) => !show)}
-          />
-        </IconWrapper>
+        <div className="profile-desktop">
+        <Link to="/" className="text-red font-bold radius-md px-2 py-1">
+        IONVU
+        </Link>
+        </div>
+        <div className="nav-menu-icon">
+          <IconWrapper>
+            <GiHamburgerMenu
+              size={30}
+              cursor="pointer"
+              onClick={() => setShowNavMenu((show) => !show)}
+            />
+          </IconWrapper>
+        </div>
         <div className="flex">
           {authState.isLogedIn ? (
             <div className="dropdown flex justify-center">

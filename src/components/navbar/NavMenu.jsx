@@ -1,16 +1,23 @@
 import React from "react";
-import { BsPersonCircle } from "react-icons/bs";
 import { MdOutlineClose } from "react-icons/md";
+import { Link } from "react-router-dom";
 import IconWrapper from "../shared/IconWrapper";
+
 const NavMenu = ({ setShowNavMenu }) => {
+  const categories = [
+    "Computer Glasses",
+    "Reading Glasses",
+    "Eyeglasses",
+    "Sunglasses",
+    "Contact Lenses",
+  ];
   return (
     <div className="nav-menu shadow-gray bg-white flex-col p-4">
       <div className="flex justify-between px-3">
         <div className="flex-col items-center">
-          <IconWrapper>
-            <BsPersonCircle size={40} />
-          </IconWrapper>
-          <p>Login</p>
+          <Link to="/" className="text-red font-bold radius-md px-2 py-1">
+            IONVU
+          </Link>
         </div>
         <IconWrapper>
           <MdOutlineClose
@@ -20,11 +27,11 @@ const NavMenu = ({ setShowNavMenu }) => {
         </IconWrapper>
       </div>
       <ul className="list-unstyled">
-        <li className="nav-list-item">Computer Glasses</li>
-        <li className="nav-list-item">Reading Glasses</li>
-        <li className="nav-list-item">Eyeglasses</li>
-        <li className="nav-list-item">Sunglasses</li>
-        <li className="nav-list-item">Contact Lenses</li>
+        {categories.map((cat) => (
+          <li key={cat} className="nav-list-item">
+            <Link to={`/products?category=${cat}`}>{cat}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
