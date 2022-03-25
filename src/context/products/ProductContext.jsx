@@ -33,7 +33,6 @@ const ProductProvider = ({ children }) => {
 
   useEffect(() => loadProducts(), []);
 
-
   const filterProducts = composeFilterFunc(
     productState,
     sortProduct,
