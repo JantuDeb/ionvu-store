@@ -1,3 +1,11 @@
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useReducer,
+  useEffect
+} from "react";
+import axiosInstance from "../../utils/axios-instance";
 import React, { createContext, useContext, useState, useReducer } from "react";
 import {axiosInstance} from "../../utils/axios-instance";
 import {
@@ -27,6 +35,8 @@ const ProductProvider = ({ children }) => {
       console.log(error);
     }
   };
+  
+  useEffect(() => loadProducts(), []);
   const filterProducts = composeFilterFunc(
     productState,
     sortProduct,
