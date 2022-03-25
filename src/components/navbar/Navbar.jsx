@@ -7,9 +7,12 @@ import IconWrapper from "../shared/IconWrapper";
 import { Link } from "react-router-dom";
 import NavMenu from "./NavMenu";
 import { useProducts } from "../../context/products/ProductContext";
+import { useAuth } from "../../context/auth/AuthContext";
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
-  const { cartState , wishlistState} = useProducts();
+  const { cartState, wishlistState } = useProducts();
+
+  const { authState, logOut } = useAuth();
   return (
     <header className="header bg-white shadow-gray">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
@@ -22,6 +25,26 @@ const Navbar = () => {
           />
         </IconWrapper>
         <div className="flex">
+          {authState.isLogedIn ? (
+            <div className="dropdown flex justify-center">
+              <span className="font-bold">{authState.user.name}</span>
+              <ul className="dropdown-menu list-unstyled">
+                <li className="list-item">Profile</li>
+                <li className="list-item">Orders</li>
+                <li className="list-item">Addresses</li>
+                <li className="list-item" onClick={() => logOut()}>
+                  Logout
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="btn-grad-red radius-md py-1 px-2 flex center"
+            >
+              Login
+            </Link>
+          )}
           <div className="mx-2">
             <IconWrapper>
               <FiSearch size={20} cursor="pointer" />
@@ -32,7 +55,9 @@ const Navbar = () => {
               <FiHeart size={20} />
             </IconWrapper>
             {wishlistState?.length !== 0 && (
-              <div className="badge-icon-count bg-red">{wishlistState.length}</div>
+              <div className="badge-icon-count bg-red">
+                {wishlistState.length}
+              </div>
             )}
           </Link>
           <Link to="/cart" className="badge-icon mx-2">
