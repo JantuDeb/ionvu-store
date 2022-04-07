@@ -13,6 +13,7 @@ const Navbar = () => {
   const { cartState, wishlistState } = useProducts();
 
   const { authState, logOut } = useAuth();
+  console.log(authState);
   return (
     <header className="header bg-white shadow-gray">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
