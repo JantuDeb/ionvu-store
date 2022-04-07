@@ -54,11 +54,11 @@ const AuthProvider = ({ children }) => {
   };
 
 
-  
+
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    authDispatch({ type: LOGIN, payload: user });
+    user && authDispatch({ type: LOGIN, payload: user });
   },[]);
 
   return (

@@ -97,8 +97,7 @@ const ProductProvider = ({ children }) => {
         });
       }
     } catch (error) {
-      if (error.response)
-      toast.error(error.response?.data?.message);
+     console.log(error)
     }
   };
 
@@ -114,8 +113,7 @@ const ProductProvider = ({ children }) => {
         });
       }
     } catch (error) {
-      if (error.response)
-      toast.error(error.response?.data?.message);
+     console.log(error);
     }
   };
 
