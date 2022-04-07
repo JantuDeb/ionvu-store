@@ -27,6 +27,7 @@ const Products = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchparams]);
+
   
   return (
     <main className="mt-2 flex-col product-filter-container">

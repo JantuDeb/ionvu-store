@@ -1,13 +1,10 @@
 import React from "react";
 import Product from "../components/products/Product";
 import NoItemsDialog from "../components/shared/NoItemsDialog";
-import { useAuth } from "../context/auth/AuthContext";
 import { useProducts } from "../context/products/ProductContext";
 
 const Wishlist = () => {
   const { wishlistState } = useProducts();
-  const {authState} = useAuth();
-  console.log(authState);
   return (
     <div className="wishlist">
       {wishlistState?.length === 0 ? (

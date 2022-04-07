@@ -2,9 +2,14 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROMN_CART = "REMOVE_FROMN_CART";
 export const DEC_CART_QUANTITY = "DEC_CART_QUANTITY";
 export const INC_CART_QUANTITY = "INC_CART_QUANTITY";
+export const GET_CARTS_PRODUCTS = "GET_CARTS_PRODUCTS"
 export const cartReducer = (state, action) => {
   const { type, payload } = action;
+  // console.log(type,payload);
   switch (type) {
+    case GET_CARTS_PRODUCTS:
+      return payload.carts;
+
     case ADD_TO_CART:
       if (state.some(({ product }) => product._id === payload._id))
         return state.map((cart) =>
@@ -13,6 +18,7 @@ export const cartReducer = (state, action) => {
             : cart
         );
       return [...state, { product: payload, quantity: 1 }];
+
     case REMOVE_FROMN_CART:
       return state.filter(({ product }) => product._id !== payload._id);
 

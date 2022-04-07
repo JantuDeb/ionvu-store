@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth/AuthContext";
 
 const LogIn = () => {
-  const [user, setUser] = useState({ email: "", password: "" });
+  const [user, setUser] = useState({ email: "ionvu@store.com", password: "1234567" });
   const { email, password } = user;
 
   const { logIn } = useAuth();
