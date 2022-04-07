@@ -1,5 +1,6 @@
 import { createContext, useReducer, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { axiosInstance, axioxPrivate } from "../../utils/axios-instance";
 import {
   authReducer,
@@ -18,7 +19,8 @@ const AuthProvider = ({ children }) => {
       const { data } = await axiosInstance.post("/signup", user);
       if (data.success) {
         authDispatch({ type: SIGNUP, payload: data.user });
-        navigate("/", { replace: true });
+        localStorage.setItem("user", JSON.stringify(data.user));
+        navigate(-1);
       }
     } catch (error) {
       console.log(error.message);
@@ -28,8 +30,10 @@ const AuthProvider = ({ children }) => {
     try {
       const { data } = await axiosInstance.post("/login", { email, password });
       if (data.success) {
+        console.log(data.user);
         authDispatch({ type: LOGIN, payload: data.user });
-        navigate("/", { replace: true });
+        localStorage.setItem("user", JSON.stringify(data.user));
+        navigate(-1);
       }
     } catch (error) {
       console.log(error);
@@ -41,12 +45,21 @@ const AuthProvider = ({ children }) => {
       const { data } = await axioxPrivate.get("/logout");
       if (data.success) {
         authDispatch({ type: LOGOUT });
+        localStorage.removeItem("user");
         navigate("/", { replace: true });
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+
+
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    user && authDispatch({ type: LOGIN, payload: user });
+  },[]);
 
   return (
     <AuthContext.Provider

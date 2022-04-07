@@ -5,14 +5,11 @@ import { FiMinus } from "react-icons/fi";
 import IconWrapper from "../shared/IconWrapper";
 import { Link } from "react-router-dom";
 import { useProducts } from "../../context/products/ProductContext";
-import {
-  DEC_CART_QUANTITY,
-  INC_CART_QUANTITY,
-  REMOVE_FROMN_CART,
-} from "../../context/products/cart-reducer";
+
 const CartCard = ({ cart }) => {
   const { _id, title, price, photos } = cart.product;
-  const { cartDispatch } = useProducts();
+  const { removeFromCart, increaseCartQuantity, decreaseQuantity } =
+    useProducts();
   return (
     <div className="cart flex-col border m-2 radius-sm">
       <div className="flex center w-full">
@@ -30,9 +27,7 @@ const CartCard = ({ cart }) => {
           <li className="flex">
             <button
               className="radius-full border p-0"
-              onClick={() =>
-                cartDispatch({ type: INC_CART_QUANTITY, payload: { _id } })
-              }
+              onClick={() => increaseCartQuantity(_id)}
             >
               <IconWrapper>
                 <BsPlus />
@@ -41,9 +36,7 @@ const CartCard = ({ cart }) => {
             <span className="input-qty mx-1">{cart.quantity}</span>
             <button
               className="radius-full border p-0"
-              onClick={() =>
-                cartDispatch({ type: DEC_CART_QUANTITY, payload: { _id } })
-              }
+              onClick={() => decreaseQuantity(_id)}
             >
               <IconWrapper>
                 <FiMinus />
@@ -55,9 +48,7 @@ const CartCard = ({ cart }) => {
         <div className="flex items-center justify-between">
           <button
             className="radius-md btn-outline-primary p-sm"
-            onClick={() =>
-              cartDispatch({ type: REMOVE_FROMN_CART, payload: { _id } })
-            }
+            onClick={() => removeFromCart(_id)}
           >
             Remove
           </button>
