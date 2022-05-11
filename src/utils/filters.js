@@ -1,6 +1,6 @@
 import { getDiscountedPrice } from "./utils";
 
-export const composeFilterFunc =
+export const getFilteredproducts =
   (state, ...functions) =>
   (products) =>
     functions.reduce((acc, curr) => {

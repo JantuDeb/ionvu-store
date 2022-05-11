@@ -11,17 +11,30 @@ import { useAuth } from "../../context/auth/AuthContext";
 const Navbar = () => {
   const [showNavMenu, setShowNavMenu] = useState(false);
   const { cartState, wishlistState } = useProducts();
-
   const { authState, logOut } = useAuth();
-  console.log(authState);
+
+  const accountLinks = [
+    {
+      label: "Profile",
+      path: "/account/profile",
+    },
+    {
+      label: "Addresses",
+      path: "/account/address",
+    },
+    {
+      label: "Orders",
+      path: "/account/order",
+    },
+  ];
   return (
     <header className="header bg-white shadow-gray">
       {showNavMenu && <NavMenu setShowNavMenu={setShowNavMenu} />}
       <nav className="flex justify-between items-center px-4 navbar">
         <div className="profile-desktop">
-        <Link to="/" className="text-red font-bold radius-md px-2 py-1">
-        IONVU
-        </Link>
+          <Link to="/" className="text-red font-bold radius-md px-2 py-1">
+            IONVU
+          </Link>
         </div>
         <div className="nav-menu-icon">
           <IconWrapper>
@@ -37,9 +50,11 @@ const Navbar = () => {
             <div className="dropdown flex justify-center">
               <span className="font-bold">{authState.user.name}</span>
               <ul className="dropdown-menu list-unstyled">
-                <li className="list-item">Profile</li>
-                <li className="list-item">Orders</li>
-                <li className="list-item">Addresses</li>
+                {accountLinks.map((account) => (
+                  <Link key={account.label} className="list-item block" to={account.path}>
+                    {account.label}
+                  </Link>
+                ))}
                 <li className="list-item" onClick={() => logOut()}>
                   Logout
                 </li>

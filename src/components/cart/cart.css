@@ -17,6 +17,8 @@
 
 .price-details {
   height: fit-content;
+  max-width: 20rem;
+  width: 100%;
   flex-shrink: 0;
   margin-top: 0.5rem;
 }

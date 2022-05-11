@@ -9,8 +9,7 @@ import {
   FILTER_CATEGORY,
 } from "../context/products/product-reducer";
 import { useProducts } from "../context/products/ProductContext";
-const Products = () => {
-  
+export const Products = () => {
   const { filterProducts, productDispatch } = useProducts();
   const [searchparams] = useSearchParams();
   const [showMobileFilter, setShowMobileFilter] = useState(false);
@@ -22,13 +21,12 @@ const Products = () => {
         payload: { categoryName: searchparams.get("category") },
       });
     return () => {
-    productDispatch({ type: CLEAR_FILTER });
-    setShowMobileFilter(false);  
-    }
+      productDispatch({ type: CLEAR_FILTER });
+      setShowMobileFilter(false);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchparams]);
 
-  
   return (
     <main className="mt-2 flex-col product-filter-container">
       <div className="sidebar-filter">
@@ -60,5 +58,3 @@ const Products = () => {
     </main>
   );
 };
-
-export default Products;

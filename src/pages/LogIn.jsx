@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth/AuthContext";
 
-const LogIn = () => {
+export const LogIn = () => {
   const [user, setUser] = useState({ email: "ionvu@store.com", password: "1234567" });
   const { email, password } = user;
 
@@ -73,7 +73,6 @@ const LogIn = () => {
         <div className="flex justify-center">
           <span>Not registered yet? </span>
           <Link to="/signup" className="btn-link px-1">
-            {" "}
             Create an account
           </Link>
         </div>
@@ -81,5 +80,3 @@ const LogIn = () => {
     </main>
   );
 };
-
-export default LogIn;
