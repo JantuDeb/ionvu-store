@@ -59,9 +59,10 @@ export const OrderSummary = ({ checkoutStep, setCheckoutStep }) => {
             );
           })}
           <div className="flex justify-between items-center p-2">
-            <p className="m-0">
-              Order confirmation email will be sent to <span className="text-gray">{authState?.user.email}</span>
-            </p>
+            {authState.isLogedIn && <p className="m-0">
+              Order confirmation email will be sent to <span className="text-gray">{authState?.user?.email}</span>
+            </p>}
+            
             <button
               onClick={() => setCheckoutStep("payment")}
               className="btn-red border radius-sm"
