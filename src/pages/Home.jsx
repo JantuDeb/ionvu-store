@@ -5,8 +5,9 @@ import TaggedProductList from "../components/home/TaggedProductList";
 import { CategoryProvider } from "../context/category/CategoryContext";
 import { useProducts } from "../context/products/ProductContext";
 
-const Home = () => {
+export const Home = () => {
   const { loadProducts } = useProducts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => loadProducts(), []);
 
   return (
@@ -18,5 +19,3 @@ const Home = () => {
     </CategoryProvider>
   );
 };
-
-export default Home;

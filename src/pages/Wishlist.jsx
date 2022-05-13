@@ -3,7 +3,7 @@ import Product from "../components/products/Product";
 import NoItemsDialog from "../components/shared/NoItemsDialog";
 import { useProducts } from "../context/products/ProductContext";
 
-const Wishlist = () => {
+export const Wishlist = () => {
   const { wishlistState } = useProducts();
   return (
     <div className="wishlist">
@@ -28,4 +28,3 @@ const Wishlist = () => {
   );
 };
 
-export default Wishlist;

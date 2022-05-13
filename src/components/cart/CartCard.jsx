@@ -8,8 +8,17 @@ import { useProducts } from "../../context/products/ProductContext";
 
 const CartCard = ({ cart }) => {
   const { _id, title, price, photos } = cart.product;
-  const { removeFromCart, increaseCartQuantity, decreaseQuantity } =
-    useProducts();
+  const {
+    removeFromCart,
+    increaseCartQuantity,
+    decreaseQuantity,
+    addToWishList,
+  } = useProducts();
+
+  const moveToWishList = () => {
+    removeFromCart(_id);
+    addToWishList(cart.product);
+  };
   return (
     <div className="cart flex-col border m-2 radius-sm">
       <div className="flex center w-full">
@@ -52,7 +61,10 @@ const CartCard = ({ cart }) => {
           >
             Remove
           </button>
-          <button className="radius-md btn-outline-primary p-sm">
+          <button
+            className="radius-md btn-outline-primary p-sm"
+            onClick={moveToWishList}
+          >
             Move to wishlist
           </button>
         </div>

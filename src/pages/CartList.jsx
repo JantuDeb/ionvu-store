@@ -3,13 +3,13 @@ import PriceDetails from "../components/cart/PriceDetails";
 import CartCard from "../components/cart/CartCard";
 import "../components/cart/cart.css";
 import { useProducts } from "../context/products/ProductContext";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import NoItemsDialog from "../components/shared/NoItemsDialog";
-const Cart = () => {
+export const CartList = () => {
   const { cartState } = useProducts();
   return cartState?.length === 0 ? (
     <NoItemsDialog title="Your cart is empty" description="Add items to it">
-       <Link to="/products" className="btn-red shadow-gray radius-sm px-6 py-2">
+      <Link to="/products" className="btn-red shadow-gray radius-sm px-6 py-2">
         Shop Now
       </Link>
     </NoItemsDialog>
@@ -21,7 +21,7 @@ const Cart = () => {
         </div>
         <div className="flex wrap justify-center">
           {cartState.map((cart) => (
-            <CartCard key={cart.product.id} cart={cart} />
+            <CartCard key={cart.product._id} cart={cart} />
           ))}
         </div>
       </div>
@@ -29,5 +29,3 @@ const Cart = () => {
     </main>
   );
 };
-
-export default Cart;

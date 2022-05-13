@@ -8,12 +8,13 @@ import React, {
 import { toast } from "react-toastify";
 import { axiosInstance, axioxPrivate } from "../../utils/axios-instance";
 import {
-  composeFilterFunc,
+  getFilteredproducts,
   filterCategory,
   filterPrice,
   filterRating,
   sortProduct,
 } from "../../utils/filters";
+import { getPriceDetails } from "../../utils/utils";
 import {
   ADD_TO_CART,
   cartReducer,
@@ -48,8 +49,7 @@ const ProductProvider = ({ children }) => {
       });
       setProducts(data.products);
     } catch (error) {
-      if (error.response)
-      toast.error(error.response?.data?.message);
+      if (error.response) toast.error(error.response?.data?.message);
     }
   };
 
@@ -61,12 +61,11 @@ const ProductProvider = ({ children }) => {
 
   const addToWishList = async (product) => {
     wishlistDispatch({ type: ADD_TO_WISHLIST, payload: product });
-    toast.success("Added to wishlist")
+    toast.success("Added to wishlist");
     try {
       await axioxPrivate.post("/user/wishlist", { productId: product._id });
     } catch (error) {
-      if (error.response)
-      toast.error(error.response?.data?.message);
+      if (error.response) toast.error(error.response?.data?.message);
     }
   };
 
@@ -75,18 +74,17 @@ const ProductProvider = ({ children }) => {
       type: REMOVE_FROM_WISHLIST,
       payload: { id },
     });
-    toast.success("Removed from wishlist")
+    toast.success("Removed from wishlist");
     try {
       await axioxPrivate.delete("/user/wishlist/" + id);
     } catch (error) {
-      if (error.response)
-      toast.error(error.response?.data?.message);
+      if (error.response) toast.error(error.response?.data?.message);
     }
   };
 
   const getWishLists = async () => {
     try {
-      const { data } = await axiosInstance.get("/user/wishlist");
+      const { data } = await axioxPrivate.get("/user/wishlist");
       if (data.success) {
         const products = data.wishlists.map((wishlist) => wishlist.product);
         wishlistDispatch({
@@ -97,13 +95,13 @@ const ProductProvider = ({ children }) => {
         });
       }
     } catch (error) {
-     console.log(error)
+      console.log(error);
     }
   };
 
   const getCartLists = async () => {
     try {
-      const { data } = await axiosInstance.get("/user/cart");
+      const { data } = await axioxPrivate.get("/user/cart");
       if (data.success) {
         cartDispatch({
           type: GET_CARTS_PRODUCTS,
@@ -113,56 +111,53 @@ const ProductProvider = ({ children }) => {
         });
       }
     } catch (error) {
-     console.log(error);
+      console.log(error);
     }
   };
 
   const addToCart = async (product) => {
     cartDispatch({ type: ADD_TO_CART, payload: product });
-    toast.success("Added to cart")
+    toast.success("Added to cart");
     try {
       await axioxPrivate.post("/user/cart", { productId: product._id });
     } catch (error) {
-      if (error.response)
-      toast.error(error.response?.data?.message);
+      if (error.response) toast.error(error.response?.data?.message);
     }
   };
 
   const removeFromCart = async (_id) => {
     cartDispatch({ type: REMOVE_FROMN_CART, payload: { _id } });
-    toast.success("Removed from cart")
+    toast.success("Removed from cart");
     try {
       await axioxPrivate.delete("/user/cart/" + _id);
     } catch (error) {
-      if (error.response)
-      toast.error(error.response?.data?.message);
+      if (error.response) toast.error(error.response?.data?.message);
     }
   };
 
   const increaseCartQuantity = async (_id) => {
     cartDispatch({ type: INC_CART_QUANTITY, payload: { _id } });
-    toast.success("Quantity updated successfully")
+    toast.success("Quantity updated successfully");
     try {
       await axioxPrivate.patch("/user/increase_quantity", { productId: _id });
     } catch (error) {
-      if (error.response)
-      toast.error(error.response?.data?.message);
+      if (error.response) toast.error(error.response?.data?.message);
     }
   };
 
   const decreaseQuantity = async (_id) => {
     cartDispatch({ type: DEC_CART_QUANTITY, payload: { _id } });
-    toast.success("Quantity updated successfully")
+    toast.success("Quantity updated successfully");
     try {
       await axioxPrivate.patch("/user/decrease_quantity", { productId: _id });
     } catch (error) {
-      if (error.response)
-        toast.error(error.response?.data?.message);
+      if (error.response) toast.error(error.response?.data?.message);
     }
   };
 
+  const { totalDiscount, totalPrice } = getPriceDetails(cartState);
 
-  const filterProducts = composeFilterFunc(
+  const filterProducts = getFilteredproducts(
     productState,
     sortProduct,
     filterCategory,
@@ -188,7 +183,9 @@ const ProductProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         increaseCartQuantity,
-        decreaseQuantity
+        decreaseQuantity,
+        totalDiscount,
+        totalPrice,
       }}
     >
       {children}

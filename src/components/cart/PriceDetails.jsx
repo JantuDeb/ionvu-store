@@ -1,22 +1,9 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useProducts } from "../../context/products/ProductContext";
 const PriceDetails = () => {
-  const { cartState } = useProducts();
-
-  function getPriceDetails(cartList) {
-    return cartList.reduce(
-      (acc, cur) => ({
-        ...acc,
-        totalPrice: acc.totalPrice + cur.product.price * cur.quantity,
-        totalDiscount:
-          acc.totalDiscount +
-          Math.ceil(cur.product.price * cur.quantity * cur.product.discount),
-      }),
-
-      { totalPrice: 0, totalDiscount: 0 }
-    );
-  }
-  const { totalDiscount, totalPrice } = getPriceDetails(cartState);
+  const { cartState, totalDiscount, totalPrice } = useProducts();
+  const { pathname } = useLocation();
 
   return (
     <div className="price-details flex-col shadow-gray mx-2 bg-white">
@@ -44,7 +31,11 @@ const PriceDetails = () => {
         <div className="flex justify-between py-2 text-success">
           You will save ₹{totalDiscount} on this order
         </div>
-        <button className="bg-red radius-md text-white"> Place Order </button>
+        {pathname === "/cart" && (
+          <Link to="/checkout">
+            <button className="bg-red radius-md text-white">Checkout</button>
+          </Link>
+        )}
       </div>
     </div>
   );
