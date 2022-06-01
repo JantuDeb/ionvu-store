@@ -5,8 +5,8 @@ const defaultConfig = {
   baseURL:
     window.location.protocol === "http:"
     // eslint-disable-next-line no-undef
-      ? "http://localhost:4000/api/v1/"
-      : "https://ionvu-api.herokuapp.com/api/v1/",
+      ? "http://localhost:4001/api/v1/"
+      : "https://store.ionvu.online/api/v1",
   headers: {
     "Content-Type": "application/json",
   },

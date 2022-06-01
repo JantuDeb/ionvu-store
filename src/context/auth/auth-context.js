@@ -1,5 +1,3 @@
-import { initialState } from "../products/product-reducer";
-
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const SIGNUP = "SIGNUP";
@@ -18,7 +16,7 @@ export const authReducer = (state, action) => {
     case SIGNUP:
       return { ...state, user: payload, isLogedIn: true };
     case LOGOUT:
-      return initialState;
+      return initialAuthState;
       case LOADING:
         return {...state, loading:payload.loading}
       case ERROR:
